@@ -1,6 +1,7 @@
 // /reportDownloader.js
 
 // Make sure to import everything this file needs
+import 'dotenv/config';
 import puppeteer from 'puppeteer';
 import path from 'path';
 import fs from 'fs';
@@ -15,7 +16,7 @@ export async function downloadReport() {
         console.log('Created downloads folder:', downloadPath);
     }
 
-    const browser = await puppeteer.launch({ headless: "new" });
+    const browser = await puppeteer.launch({ headless: false });
 
     try {
         const page = await browser.newPage();
@@ -25,25 +26,39 @@ export async function downloadReport() {
             downloadPath: downloadPath,
         });
 
-        console.log('Navigating to website...');
-        // --- (Your login and navigation logic goes here) ---
-        // ...
-        // await page.goto('https://your-report-website.com/login', ...);
-        // await page.type('#username', ...);
-        // await page.type('#password', ...);
-        // await page.click('#loginButton');
-        // await page.waitForNavigation(...);
-        // ...
+        console.log('Navigating to login page...');
+        await page.goto(process.env.WEBSITE_ADDRESS, {
+            waitUntil: 'networkidle2'
+        });
         
-        console.log('Clicking download button...');
-        // --- (Your download click logic goes here) ---
-        // const downloadButtonSelector = '#download-csv-button';
-        // await page.waitForSelector(downloadButtonSelector);
-        // await Promise.all([
-        //     page.waitForNetworkIdle({ timeout: 10000 }),
-        //     page.click(downloadButtonSelector)
-        // ]);
-        // ...
+        console.log('Logging in... ');
+
+        // Click on <input> [placeholder="Email address"]
+        await page.waitForSelector('[placeholder="Email address"]');
+        await page.click('[placeholder="Email address"]');
+
+        // Fill "jmurgolo@spring... on <input> [placeholder="Email address"]
+        await page.waitForSelector('[placeholder="Email address"]:not([disabled])');
+        await page.type('[placeholder="Email address"]', process.env.WEBSITE_USERNAME);
+
+        // Press Enter on input
+        await page.waitForSelector('[placeholder="Email address"]');
+        await page.keyboard.press('Enter');
+
+        // Click on <input> [placeholder="Password"]
+        await page.waitForSelector('[placeholder="Password"]');
+        await page.click('[placeholder="Password"]');
+
+        // Fill "SynQ%PMmVdgFEhz... on <input> [placeholder="Password"]
+        await page.waitForSelector('[placeholder="Password"]:not([disabled])');
+        await page.type('[placeholder="Password"]', process.env.WEBSITE_PASSWORD);
+
+        // Press Enter on input
+        await page.waitForSelector('[placeholder="Password"]');
+        await page.keyboard.press('Enter');
+
+``
+
 
         console.log('Download triggered. Waiting 15 seconds...');
         await new Promise(resolve => setTimeout(resolve, 15000));

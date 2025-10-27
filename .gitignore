@@ -7,3 +7,6 @@ downloads/
 # Log files
 npm-debug.log*
 *.log
+
+# Secrets and environment variables
+.env
