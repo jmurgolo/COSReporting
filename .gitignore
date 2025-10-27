@@ -1,0 +1,9 @@
+# Dependencies
+node_modules/
+
+# Our downloaded reports
+downloads/
+
+# Log files
+npm-debug.log*
+*.log
