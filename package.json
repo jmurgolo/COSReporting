@@ -2,14 +2,23 @@
   "name": "cosreporting",
   "version": "1.0.0",
   "description": "",
+  "homepage": "https://github.com/jmurgolo/COSReporting#readme",
+  "bugs": {
+    "url": "https://github.com/jmurgolo/COSReporting/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jmurgolo/COSReporting.git"
+  },
   "license": "ISC",
   "author": "",
-  "main": "Main.js",
   "type": "module",
+  "main": "Main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "adm-zip": "^0.5.16",
     "csv-parse": "^6.1.0",
     "csv-parser": "^3.2.0",
     "dotenv": "^17.2.3",
