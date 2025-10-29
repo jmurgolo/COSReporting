@@ -167,3 +167,51 @@ export async function downloadReport() {
         console.log('Browser closed.');
     }
 }
+
+function waitForDownloadsToFinish(folderPath, timeout = 120000) {
+    console.log('Waiting for downloads to finish...');
+    const pollInterval = 2000; // Check every 2 seconds
+    let totalTime = 0;
+
+    return new Promise((resolve, reject) => {
+        const intervalId = setInterval(() => {
+            totalTime += pollInterval;
+
+            // Check for timeout
+            if (totalTime > timeout) {
+                clearInterval(intervalId);
+                return reject(new Error('Download wait timed out.'));
+            }
+
+            try {
+                // Read all files in the directory
+                const files = fs.readdirSync(folderPath);
+
+                const hasCrdownload = files.some(file => file.endsWith('.crdownload'));
+                const hasZip = files.some(file => file.endsWith('.zip'));
+
+                // Log status
+                console.log(`Checking downloads: In-progress (.crdownload): ${hasCrdownload}, Completed (.zip): ${hasZip}`);
+
+                // Success condition: No files are "in-progress" AND
+                // at least one .zip file has appeared.
+                if (!hasCrdownload && hasZip) {
+                    clearInterval(intervalId);
+                    resolve(true);
+                }
+                
+                // Keep polling if downloads are in progress (hasCrdownload)
+                // or if nothing has shown up yet (hasZip is false)
+                
+            } catch (err) {
+                // Handle case where directory might not exist yet
+                if (err.code === 'ENOENT') {
+                    console.log('Downloads folder not found, waiting...');
+                } else {
+                    clearInterval(intervalId);
+                    return reject(err);
+                }
+            }
+        }, pollInterval);
+    });
+}
