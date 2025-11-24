@@ -1,12 +1,12 @@
 // === CONFIGURATION ===
 // ID of the checkbox you want to start WITH.
-const startElementId = "1_reportable_checkbox";
+const startElementId = "1035835_reportable_checkbox";
 
 // Text of the heading (<h5>) you want to stop BEFORE.
-const endElementText = "Certified Letters";
+const endElementID = "1035764_reportable_checkbox";
 
 // Pause time in milliseconds (1000 = 1 second)
-const delayInMilliseconds = 1500;
+const delayInMilliseconds = 2500;
 // =====================
 
 
@@ -19,7 +19,7 @@ function sleep(ms) {
 async function clickCheckboxesById() {
     // 1. Find the start and end elements
     const startElement = document.getElementById(startElementId);
-    const endElement = Array.from(document.querySelectorAll('h5')).find(h => h.textContent.trim().includes(endElementText));
+    const endElement = document.getElementById(endElementID);
 
     // --- Error Checking ---
     if (!startElement) {
@@ -27,7 +27,7 @@ async function clickCheckboxesById() {
         return;
     }
     if (!endElement) {
-        console.error(`Error: Could not find an end element with text "${endElementText}". Please check the text.`);
+        console.error(`Error: Could not find an end element with text "${endElementID}". Please check the text.`);
         return;
     }
 
@@ -54,7 +54,7 @@ async function clickCheckboxesById() {
     });
 
     if (boxesToClick.length === 0) {
-        console.warn(`No checkboxes found between ID "${startElementId}" and text "${endElementText}".`);
+        console.warn(`No checkboxes found between ID "${startElementId}" and text "${endElementID}".`);
         return;
     }
 

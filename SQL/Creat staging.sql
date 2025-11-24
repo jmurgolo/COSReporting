@@ -1,4 +1,4 @@
-CREATE TABLE [dbo].[Reports_Staging] (
+CREATE TABLE [dbo].[Housing_Details] (
     [Record #] NVARCHAR(MAX) NULL,
     [Record Type] NVARCHAR(MAX) NULL,
     [Applicant Name] NVARCHAR(MAX) NULL,
@@ -68,4 +68,69 @@ CREATE TABLE [dbo].[Reports_Staging] (
     [Water] NVARCHAR(MAX) NULL,
     [Year Built] NVARCHAR(MAX) NULL,
     [Zoning] NVARCHAR(MAX) NULL
+);
+
+CREATE TABLE [dbo].[Housing_Additional_Locations] (
+    [Applicant Name] NVARCHAR(MAX) NULL,
+    [Archived] NVARCHAR(MAX) NULL,
+    [Building Type] NVARCHAR(MAX) NULL,
+    [City] NVARCHAR(MAX) NULL,
+    [Country] NVARCHAR(MAX) NULL,
+    [Full Address] NVARCHAR(MAX) NULL,
+    [Latitude] NVARCHAR(MAX) NULL,
+    [Location] NVARCHAR(MAX) NULL,
+    [Location Flags] NVARCHAR(MAX) NULL,
+    [Location ID] NVARCHAR(MAX) NULL,
+    [Longitude] NVARCHAR(MAX) NULL,
+    [Lot Area] NVARCHAR(MAX) NULL,
+    [MAT IDf] NVARCHAR(MAX) NULL, -- Kept exactly as you sent it
+    [Mbl] NVARCHAR(MAX) NULL,
+    [Occupancy Type] NVARCHAR(MAX) NULL,
+    [Owner City] NVARCHAR(MAX) NULL,
+    [Owner Country] NVARCHAR(MAX) NULL,
+    [Owner Email] NVARCHAR(MAX) NULL,
+    [Owner Name] NVARCHAR(MAX) NULL,
+    [Owner Phone No] NVARCHAR(MAX) NULL,
+    [Owner Postal Code] NVARCHAR(MAX) NULL,
+    [Owner State] NVARCHAR(MAX) NULL,
+    [Owner Street Name] NVARCHAR(MAX) NULL,
+    [Owner Street No] NVARCHAR(MAX) NULL,
+    [Owner Unit] NVARCHAR(MAX) NULL,
+    [Postal Code] NVARCHAR(MAX) NULL,
+    [Property Use] NVARCHAR(MAX) NULL,
+    [Segment End Address] NVARCHAR(MAX) NULL,
+    [Segment End Point Latitude] NVARCHAR(MAX) NULL,
+    [Segment End Point Longitude] NVARCHAR(MAX) NULL,
+    [Segment Length (miles)] NVARCHAR(MAX) NULL,
+    [Segment Start Address] NVARCHAR(MAX) NULL,
+    [Segment Start Point Latitude] NVARCHAR(MAX) NULL,
+    [Segment Start Point Longitude] NVARCHAR(MAX) NULL,
+    [Sewage] NVARCHAR(MAX) NULL,
+    [State] NVARCHAR(MAX) NULL,
+    [Street Name] NVARCHAR(MAX) NULL,
+    [Street No] NVARCHAR(MAX) NULL,
+    [Unit] NVARCHAR(MAX) NULL,
+    [Water] NVARCHAR(MAX) NULL,
+    [Year Built] NVARCHAR(MAX) NULL,
+    [Zoning] NVARCHAR(MAX) NULL
+);
+
+CREATE TABLE [dbo].[Housing_Emergency_Violations] (
+    [Record #] NVARCHAR(MAX) NULL,
+    [Code / Description] NVARCHAR(MAX) NULL,
+    [Responsible Party] NVARCHAR(MAX) NULL,
+    [Unit] NVARCHAR(MAX) NULL,
+    [Correction Required By:] NVARCHAR(MAX) NULL,
+    [Status] NVARCHAR(MAX) NULL,
+    [Picture] NVARCHAR(MAX) NULL
+);
+
+CREATE TABLE [dbo].[Housing_Regular_Violations] (
+    [Record #] NVARCHAR(MAX) NULL,
+    [Code / Description] NVARCHAR(MAX) NULL,
+    [Responsible Party] NVARCHAR(MAX) NULL,
+    [Unit(s)] NVARCHAR(MAX) NULL, -- Note the (s) matches the CSV header
+    [Status] NVARCHAR(MAX) NULL,
+    [Picture] NVARCHAR(MAX) NULL,
+    [Correction Required By:] NVARCHAR(MAX) NULL
 );
