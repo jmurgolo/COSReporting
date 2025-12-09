@@ -3,6 +3,7 @@ node_modules/
 
 # Our downloaded reports
 downloads/
+extracted_data/
 
 # Log files
 npm-debug.log*
