@@ -9,6 +9,7 @@ import fs from 'fs';
 const reportSelectors = [
     '#reports-menu-records-housing-record-details',
     '#reports-menu-records-housing-regular-and-emergency-violations',
+    '#reports-menu-records-housing-general-details'
     // Add more here easily:
     // '#reports-menu-records-another-report-3',
 ];
